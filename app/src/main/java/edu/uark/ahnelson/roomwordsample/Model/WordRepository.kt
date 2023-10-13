@@ -45,4 +45,11 @@ class WordRepository(private val wordDao: WordDao) {
     suspend fun update(word: Word) {
         wordDao.update(word)
     }
+
+    //Delete function that takes a word object as a paraeter and deletes it from teh database
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(word: Word) {
+        wordDao.delete(word)
+    }
 }

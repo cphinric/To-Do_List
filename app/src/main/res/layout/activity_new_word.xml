@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2f302f"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:background="@drawable/edit_text_border"
@@ -52,6 +52,7 @@
         tools:ignore="VisualLintTextFieldSize" />
 
     <Button
+        android:backgroundTint="@null"
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,17 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="VisualLintButtonSize" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/text_banner"
-        android:text="Done?"
-        app:layout_constraintBottom_toTopOf="@+id/button_save"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="0dp"
@@ -88,8 +78,9 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/text_banner"
         android:ems="10"
+        android:focusable="false"
         android:hint="Date..."
-        android:inputType="date"
+        android:inputType="none"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toStartOf="@+id/editTextTime"
@@ -99,15 +90,40 @@
         android:id="@+id/editTextTime"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/text_banner"
         android:ems="10"
+        android:focusable="false"
         android:hint="Time..."
-        android:inputType="time"
+        android:inputType="none"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/button_save"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextDate" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/window_border" />
+
+    <Spinner
+        android:id="@+id/recurrenceSpinner"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/text_banner"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

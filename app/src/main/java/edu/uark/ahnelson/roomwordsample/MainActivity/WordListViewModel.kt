@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import edu.uark.ahnelson.roomwordsample.Model.Word
 import edu.uark.ahnelson.roomwordsample.Model.WordRepository
+import kotlinx.coroutines.launch
+import androidx.lifecycle.viewModelScope
 
 class WordListViewModel(private val repository: WordRepository) : ViewModel() {
 
@@ -14,6 +16,12 @@ class WordListViewModel(private val repository: WordRepository) : ViewModel() {
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
     val allWords: LiveData<List<Word>> = repository.allWords.asLiveData()
+
+    fun deleteWord(word: Word) {
+        viewModelScope.launch {
+            repository.delete(word)
+        }
+    }
 }
 
 class WordListViewModelFactory(private val repository: WordRepository) : ViewModelProvider.Factory {

@@ -1,6 +1,7 @@
 package edu.uark.ahnelson.roomwordsample.Model
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -33,4 +34,8 @@ interface WordDao {
     //Update a single word
     @Update
     suspend fun update(word: Word):Int
+
+    @Delete
+    suspend fun delete(word: Word)
+
 }

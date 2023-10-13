@@ -11,10 +11,10 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import edu.uark.ahnelson.roomwordsample.MainActivity.MainActivity
 
 class NotificationUtil {
     val CHANNEL_ID = "WordList Notification Channel"
-
     fun createNotificationChannel(context: Context) {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -29,6 +29,7 @@ class NotificationUtil {
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
+
 
     fun createClickableNotification(context: Context, title:String, content:String, clickIntent:Intent, id:Int){
         val stackBuilder: TaskStackBuilder = TaskStackBuilder.create(context)
