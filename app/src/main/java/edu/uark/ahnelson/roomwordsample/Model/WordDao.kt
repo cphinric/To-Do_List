@@ -37,5 +37,4 @@ interface WordDao {
 
     @Delete
     suspend fun delete(word: Word)
-
 }

@@ -6,4 +6,6 @@
     <color name="colorPrimaryDark">#254441</color>
     <color name="colorAccent">#FF4081</color>
     <color name="buttonLabel">#FFFFFF</color>
+    <color name="completed">@color/white</color>
+    <color name="incomplete">@color/black</color>
 </resources>

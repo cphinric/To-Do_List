@@ -11,6 +11,7 @@ import kotlinx.coroutines.coroutineScope
 class NewWordViewModel(private val repository: WordRepository, private val id:Int) : ViewModel() {
 
     var curWord: LiveData<Word> = repository.getWord(id).asLiveData()
+    private var selectedRecurrence: String = " "
 
     fun updateId(id:Int){
         curWord = repository.getWord(id).asLiveData()
@@ -22,6 +23,7 @@ class NewWordViewModel(private val repository: WordRepository, private val id:In
     suspend fun insert(word: Word){
         coroutineScope {
             repository.insert(word)
+            word.recurrence = selectedRecurrence
         }
     }
 
@@ -31,6 +33,7 @@ class NewWordViewModel(private val repository: WordRepository, private val id:In
     suspend fun update(word: Word) {
         coroutineScope {
             repository.update(word)
+            word.recurrence = selectedRecurrence
         }
     }
 }

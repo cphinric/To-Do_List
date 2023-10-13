@@ -13,7 +13,8 @@ class Word(
     @ColumnInfo(name = "quantity") val quantity: Int,
     @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "date") var date: String,
-    @ColumnInfo(name = "time") var time: String
-
+    @ColumnInfo(name = "time") var time: String,
+    @ColumnInfo(name = "recurrence") var recurrence: String,
+    @ColumnInfo(name = "done") var done: Boolean
 )
 

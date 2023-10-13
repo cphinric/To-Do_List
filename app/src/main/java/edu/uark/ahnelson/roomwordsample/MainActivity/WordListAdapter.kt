@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ class WordListAdapter(val wordClicked:(word:Word)->Unit, val wordDeleted: (word:
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
 
-        holder.bind(current.word,current.quantity)
+        holder.bind(current.word,current.quantity,current.done)
         holder.itemView.tag= current
         holder.itemView.setOnClickListener{
             wordClicked(holder.itemView.tag as Word)
@@ -31,6 +32,9 @@ class WordListAdapter(val wordClicked:(word:Word)->Unit, val wordDeleted: (word:
         // Handle the "Done?" button click
         holder.doneBox.setOnClickListener {
             wordDeleted(current)
+            current.done = true
+            notifyDataSetChanged()
+
         }
     }
 
@@ -39,9 +43,16 @@ class WordListAdapter(val wordClicked:(word:Word)->Unit, val wordDeleted: (word:
         private val quantityTextView: TextView = itemView.findViewById(R.id.quantityText)
         val doneBox: Button = itemView.findViewById(R.id.doneBox)
 
-        fun bind(text: String?,quantity:Int?) {
+        fun bind(text: String?,quantity:Int?, done: Boolean) {
             wordItemView.text = text
             quantityTextView.text = quantity.toString()
+
+            //Check if the task is completed and set the text color accordingly
+            if(done) {
+                wordItemView.setTextColor(ContextCompat.getColor(itemView.context, R.color.completed))
+            } else {
+                wordItemView.setTextColor(ContextCompat.getColor(itemView.context, R.color.incomplete))
+            }
         }
         companion object {
             fun create(parent: ViewGroup): WordViewHolder {

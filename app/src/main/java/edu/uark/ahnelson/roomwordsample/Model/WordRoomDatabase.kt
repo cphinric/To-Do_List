@@ -31,16 +31,17 @@ abstract class WordRoomDatabase : RoomDatabase() {
                     wordDao.deleteAll()
 
                     // Add sample words.
-                    var word = Word(null,"Spaghetti",1, "Go to the store and buy spaghetti for mom", "2023-10-20", "14:07")
+                    var word = Word(null,"Spaghetti",1, "Go to the store and buy spaghetti for mom", "2023-10-20", "14:07", "Daily", true)
                     wordDao.insert(word)
-                    word = Word(null,"Chicken",2,"Make sure to check on the chickens and see if they laid any eggs", "2023-10-17", "8:00")
+                    word = Word(null,"Chicken",2,"Make sure to check on the chickens and see if they laid any eggs", "2023-10-17", "8:00", "Weekly", false)
                     wordDao.insert(word)
 
                     // My Entries
-                    word = Word(null,"Homework 2",3,"Mobile Programming homework 2 (To-Do list)", "2023-10-13", "23:59")
+                    word = Word(null,"Homework 2",3,"Mobile Programming homework 2 (To-Do list)", "2023-10-13", "23:59", "Monthly", false)
                     wordDao.insert(word)
 
-                    word = Word(null, "Haircut", 4, "Haircut at shag salon with Lisa", "2023-18-23", "14:00")
+                    word = Word(null, "Haircut", 4, "Haircut at shag salon with Lisa", "2023-18-23", "14:00", "Does Not Repeat", false)
+                    wordDao.insert(word)
                 }
             }
         }

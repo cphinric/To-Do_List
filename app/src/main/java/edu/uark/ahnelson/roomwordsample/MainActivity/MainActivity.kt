@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.POST_NOTIFICATIONS,
@@ -97,14 +98,15 @@ class MainActivity : AppCompatActivity() {
         // in the foreground.
         wordListViewModel.allWords.observe( this) { words ->
             // Update the cached copy of the words in the adapter.
+            val sortedList = words.sortedWith(compareBy({ it.done }, { it.word }))
             words.let {
                 adapter.submitList(it)
-                if(it.isNotEmpty()) {
+                if(it.isNotEmpty() && sortedList[0].done) {
                     it[0].id?.let { it1 ->
                         NotificationUtil().createClickableNotification(
                             this,
-                            it[0].word,
-                            it[0].quantity.toString(),
+                            sortedList[0].word,
+                            sortedList[0].quantity.toString(),
                             Intent(this@MainActivity, NewWordActivity::class.java),
                             it1
                         )
